@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>monome pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="monome application for developing ruby scripts for yo monomes">
+    <meta name="author" content="tom dinchak <dinchak@gmail.com>">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 40px;
+      }
+    </style>
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/css/pages.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">monome pages</a>
+          <div class="nav-collapse">
+            <ul class="nav nav-pills">
+              <li class="selected-device"><a href="#">no device selected</a></li>
+              <li class="dropdown">
+                <a href="#" class="menu-toggle" data-toggle="dropdown">serialosc <b class="caret"></b></a>
+                <ul class="dropdown-menu serialosc-dropdown">
+                  <li><a href="#">setup</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="toolbar">
+      <div class="toolbar-item" id="toolbar-new-page"></div>
+      <div class="toolbar-item" id="toolbar-run"></div>
+      <div class="toolbar-item" id="toolbar-stop"></div>
+      <div class="toolbar-item" id="toolbar-log"></div>
+      <div class="toolbar-item" id="toolbar-zoom-in"></div>
+      <div class="toolbar-item" id="toolbar-zoom-out"></div>
+    </div>
+    
+    <div class="nav nav-tabs" id="editor-tabs">
+    </div>
+    
+    <div id="editors"></div>
+
+    <div class="modal" id="new-page-modal" style="display: none;">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">x</a>
+        <h3>New Page</h3>
+      </div>
+      <div class="modal-body">
+        Page Name:
+        <input type="text" id="new-page-name"/>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-primary" id="new-page-save">Save</a>
+        <a href="#" class="btn" id="new-page-cancel">Cancel</a>
+      </div>
+    </div>
+
+    <script src="/js/jquery-1.7.2.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/jstorage.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/ace/src/ace.js"></script>
+    <script src="/ace/src/theme-twilight.js"></script>
+    <script src="/ace/src/mode-ruby.js"></script>
+    <script src="/js/pages.js"></script>
+  </body>
+</html>

@@ -17,7 +17,7 @@ module MonomePages
       @prefix = '/monome'
       @id = ''
       @connected = true
-      @pages = []
+      @pages = {}
       if @service.name =~ /arc (\d)/
         @type = :arc
         @encoders = $1.to_i
@@ -103,7 +103,7 @@ module MonomePages
     end
 
     def add_page(name)
-      pages.push Page.new name
+      pages[name] = Page.new name
     end
 
   end
