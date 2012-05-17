@@ -8,21 +8,23 @@ module MonomePages
     attr_reader :services, :devices
 
     def initialize
-      @services = {}
-      @devices = {}
+      @services = []
+      @devices = []
     end
 
     def detect
       @browseThread = Thread.start do
         DNSSD.browse! '_monome-osc._udp', 'local' do |reply|
           DNSSD.resolve reply do |service|
-            next if @services.has_key? service.name
-            @services[service.name] = service
+            ap "DNSSD: service #{service.name} discovered" if $PAGES_DEBUG
+            next if @services.index {|s| s.name == service.name } != nil
+            @services.push service
             device = MonomePages::SerialOSCDevice.new service
             device.start_osc_server
             device.init_device
             sleep 0.1
-            @devices[device.id] = device
+            puts "DNNSD: discovered id:#{device.id}, name:#{device.name}}" if $PAGES_DEBUG
+            @devices.push device
           end
         end
       end
@@ -37,6 +39,12 @@ module MonomePages
       {
         :devices => @devices
       }.to_json(*a)
+    end
+
+    def find(&b)
+      index = @devices.index &b
+      return nil if index == nil
+      return @devices[index]
     end
 
   end

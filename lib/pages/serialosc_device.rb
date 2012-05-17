@@ -9,6 +9,7 @@ module MonomePages
     def initialize(service)
       @service = service
       @name = @service.name
+      # the port serialosc listens on and we send to
       @send_port = @service.port
       @domain = @service.domain
       @encoders = 0
@@ -33,6 +34,7 @@ module MonomePages
       while !foundPort do
         # rescue in case port is in use
         begin
+          # the port we listen on and serialosc sends to
           @listen_port = rand(1024..65535)
           @server = OSC::Server.new(@listen_port)
           foundPort = true
