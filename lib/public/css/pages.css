@@ -74,6 +74,10 @@ body {
   background-image: url('/img/icons/log.png');
 }
 
+#toolbar-midi-matrix {
+  background-image: url('/img/icons/midi-matrix.png');
+}
+
 #toolbar-zoom-in {
   background-image: url('/img/icons/zoom-in.png');
 }

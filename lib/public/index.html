@@ -57,6 +57,7 @@
       <div class="toolbar-item" id="toolbar-run"></div>
       <div class="toolbar-item" id="toolbar-stop"></div>
       <div class="toolbar-item" id="toolbar-log"></div>
+      <div class="toolbar-item" id="toolbar-midi-matrix"></div>
       <div class="toolbar-item" id="toolbar-zoom-in"></div>
       <div class="toolbar-item" id="toolbar-zoom-out"></div>
     </div>
@@ -69,15 +70,31 @@
     <div class="modal" id="new-page-modal" style="display: none;">
       <div class="modal-header">
         <a class="close" data-dismiss="modal">x</a>
-        <h3>New Page</h3>
+        <h3>new page</h3>
       </div>
       <div class="modal-body">
-        Page Name:
+        page name
         <input type="text" id="new-page-name"/>
       </div>
       <div class="modal-footer">
-        <a href="#" class="btn btn-primary" id="new-page-save">Save</a>
-        <a href="#" class="btn" id="new-page-cancel">Cancel</a>
+        <a href="#" class="btn btn-primary" id="new-page-save">save</a>
+        <a href="#" class="btn" id="new-page-cancel">cancel</a>
+      </div>
+    </div>
+
+    <div class="modal" id="midi-matrix-modal" style="display: none;">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">x</a>
+        <h3>midi matrix</h3>
+      </div>
+      <div class="modal-body">
+        <label>midi output</label>
+        <select class="midi-output-dropdown"></select>
+        <label>midi input</label>
+        <select class="midi-input-dropdown"></select>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-primary" id="midi-matrix-done">done</a>
       </div>
     </div>
 

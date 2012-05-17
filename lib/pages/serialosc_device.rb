@@ -18,11 +18,14 @@ module MonomePages
       @id = ''
       @connected = true
       @pages = {}
+
+      # best way i can come up with to detect arc
       if @service.name =~ /arc (\d)/
         @type = :arc
         @encoders = $1.to_i
-        puts "[" + @name + "] is a " + @encoders.to_s + " encoder arc"
+        puts @name + ": #{@encoders} encoder arc" if $PAGES_DEBUG
       end
+
     end
 
     def start_osc_server
@@ -37,8 +40,10 @@ module MonomePages
         end
       end
 
-      @server.add_method /.*/ do |msg|
-        puts "[" + @name + ":" + @listen_port.to_s + "] received: " + msg.address + " " + msg.to_a.to_s
+      if $PAGES_DEBUG
+        @server.add_method /.*/ do |msg|
+          puts @name + ": " + msg.address + " " + msg.to_a.to_s
+        end
       end
 
       @server.add_method "/sys/size" do |msg|
@@ -47,7 +52,7 @@ module MonomePages
           @type = :grid
           @size_x = args.shift
           @size_y = args.shift
-          puts "[" + @name + "] is a " + @size_x.to_s + "x" + @size_y.to_s + " grid"
+          puts @name + ": #{@size_x.to_s}x#{@size_y.to_s} grid" if $PAGES_DEBUG
         end
       end
 

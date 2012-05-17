@@ -1,4 +1,5 @@
 require 'dnssd'
+require 'ap'
 require_relative 'serialosc_device'
 
 module MonomePages
@@ -12,7 +13,6 @@ module MonomePages
     end
 
     def detect
-      puts "detect"
       @browseThread = Thread.start do
         DNSSD.browse! '_monome-osc._udp', 'local' do |reply|
           DNSSD.resolve reply do |service|
@@ -21,10 +21,8 @@ module MonomePages
             device = MonomePages::SerialOSCDevice.new service
             device.start_osc_server
             device.init_device
-            puts @devices.inspect
             sleep 0.1
             @devices[device.id] = device
-            puts @devices.inspect
           end
         end
       end
@@ -32,6 +30,13 @@ module MonomePages
 
     def register(name, port)
       DNSSD.register! name, '_monome-osc._udp', 'local', port
+      ap "DNSSD: registering #{name} on port #{port}" if $PAGES_DEBUG
+    end
+
+    def to_json(*a)
+      {
+        :devices => @devices
+      }.to_json(*a)
     end
 
   end
