@@ -4,7 +4,8 @@ require_relative 'page'
 
 module MonomePages
   class SerialOSCDevice
-    attr_reader :service, :id, :name, :send_port, :listen_port, :domain, :connected, :type, :size_x, :size_y, :encoders, :pages
+    attr_reader :service, :name, :send_port, :listen_port, :domain, :connected, :type, :size_x, :size_y, :encoders, :pages
+    attr_accessor :id
 
     def initialize(service)
       @service = service
@@ -12,13 +13,13 @@ module MonomePages
       # the port serialosc listens on and we send to
       @send_port = @service.port
       @domain = @service.domain
+      @serial = ''
       @encoders = 0
       @size_x = 0
       @size_y = 0
       @prefix = '/monome'
-      @id = ''
       @connected = true
-      @pages = {}
+      @pages = []
 
       # best way i can come up with to detect arc
       if @service.name =~ /arc (\d)/
@@ -59,7 +60,7 @@ module MonomePages
       end
 
       @server.add_method "/sys/id" do |msg|
-        @id = msg.to_a.shift
+        @serial = msg.to_a.shift
       end
 
       @server.add_method "/sys/rotation" do |msg|
@@ -110,7 +111,9 @@ module MonomePages
     end
 
     def add_page(name)
-      pages[name] = Page.new name
+      page = Page.new name
+      page.id = pages.length
+      pages.push page
     end
 
   end

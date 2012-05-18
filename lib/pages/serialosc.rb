@@ -24,6 +24,7 @@ module MonomePages
             device.init_device
             sleep 0.1
             puts "DNNSD: discovered id:#{device.id}, name:#{device.name}}" if $PAGES_DEBUG
+            device.id = @devices.length
             @devices.push device
           end
         end

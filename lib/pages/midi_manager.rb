@@ -9,6 +9,8 @@ module MonomePages
       @matrix = {}
       @devices = { :output => {}, :input => {} }
       scan_devices
+      @inputs = []
+      @outputs = []
     end
 
     def scan_devices
@@ -29,18 +31,24 @@ module MonomePages
     end
 
     def add_map(id, type, device, page=nil)
+      ap page
       if type == :output
-        @outputs[id] = UniMIDI::Output.use id unless @outputs.has_key?(id)
+        @outputs[id] = UniMIDI::Output.use id unless @outputs[id]
       elsif type == :input
-        @inputs[id] = UniMIDI::Input.use id unless @inputs.has_key?(id)
+        @inputs[id] = UniMIDI::Input.use id unless @inputs[id]
       end
-      @matrix = { device[:id] => { :map => [], :pages => {} } }  if @matrix[device[:id]] == nil
+
+      if @matrix[device.id] == nil
+        @matrix[device.id] = { :map => [], :pages => {} }
+      end
+
       if page == nil
-        @matrix[device[:id]][:map].push( { :id => id, :type => type } )
+        @matrix[device.id][:map].push( { :id => id, :type => type } )
       else
-        @matrix[device[:id]][:pages][page[:id]] = { :map => [] } unless @matrix[device[:id]][:pages].has_key?(page[:id])
-        @matrix[device[:id]][:pages][page[:id]][:map].push( { :id => id, :type => type } )
+        @matrix[device.id][:pages][page.id] = { :map => [] } unless @matrix[device.id][:pages][page.id]
+        @matrix[device.id][:pages][page.id][:map].push( { :id => id, :type => type } )
       end
+      true
     end
 
   end

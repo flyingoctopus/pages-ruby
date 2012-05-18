@@ -1,6 +1,7 @@
 module MonomePages
   class Page
     attr_reader :name, :code
+    attr_accessor :id
 
     def initialize(name)
       @name = name

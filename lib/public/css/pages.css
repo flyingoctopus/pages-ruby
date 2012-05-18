@@ -4,6 +4,35 @@ body {
   overflow: hidden;
 }
 
+.create-mapping {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+  background-color: #f3f3f3;
+}
+
+.create-mapping button {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.create-mapping select {
+  margin: 10px 0px auto;
+}
+
+.create-mapping-ctrls {
+  text-align: center;
+}
+
+.create-mapping-ctrls button {
+  margin-top: 10px;
+}
+
 .navbar {
   background-color: #333;
 }
@@ -74,8 +103,8 @@ body {
   background-image: url('/img/icons/log.png');
 }
 
-#toolbar-midi-matrix {
-  background-image: url('/img/icons/midi-matrix.png');
+#toolbar-midi-map {
+  background-image: url('/img/icons/midi-map.png');
 }
 
 #toolbar-zoom-in {

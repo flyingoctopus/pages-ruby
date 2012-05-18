@@ -21,7 +21,7 @@ module MonomePages
         serialosc.devices.to_json
       end
 
-      post '/devices/serialos' do
+      post '/devices/serialosc' do
         if !params.has_key?(:name) 
           return
         end
@@ -32,7 +32,7 @@ module MonomePages
       end
 
       post '/pages' do
-        device = serialosc.devices[params[:device]]
+        device = serialosc.devices[params[:device].to_i]
         device.add_page params[:name]
         device.pages.to_json
       end
@@ -47,9 +47,10 @@ module MonomePages
       end
 
       post '/midi_matrix' do
-        device = serialosc.devices[params[:device]]
-        page = device.pages.has_key?(params[:page_id]) ? device.pages[params[:page_id]] : nil
-        midi.add_map(params[:midi_id], params[:type], device, page)
+        device = serialosc.devices[params[:device].to_i]
+        ap device
+        page = device.pages[params[:page].to_i] ? device.pages[params[:page].to_i] : nil
+        midi.add_map(params[:midi].to_i, params[:type].to_sym, device, page)
       end
     end
   end
