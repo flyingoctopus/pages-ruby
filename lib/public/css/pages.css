@@ -33,6 +33,10 @@ body {
   margin-top: 10px;
 }
 
+.midi-unmap-button img {
+  cursor: pointer;
+}
+
 .navbar {
   background-color: #333;
 }

@@ -48,9 +48,16 @@ module MonomePages
 
       post '/midi_matrix' do
         device = serialosc.devices[params[:device].to_i]
-        ap device
         page = device.pages[params[:page].to_i] ? device.pages[params[:page].to_i] : nil
         midi.add_map(params[:midi].to_i, params[:type].to_sym, device, page)
+      end
+
+      delete '/midi_matrix' do
+        device = serialosc.devices[params['device'].to_i]
+        if params['page']
+          page = serialosc.devices[params['device'].to_i].pages[params['page'].to_i]
+        end
+        midi.delete_map(device, params['map'].to_i, page)
       end
     end
   end

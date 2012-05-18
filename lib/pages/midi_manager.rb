@@ -15,7 +15,8 @@ module MonomePages
 
     def scan_devices
       UniMIDI::Output.all.each do |device|
-        @devices[:output][device.id] = { :name => device.pretty_name, :open => false }
+        @devices[:output][device.id] = 
+          { :name => device.pretty_name, :open => false, :device => device }
       end
 
       @devices[:output].each do |k,v|
@@ -23,7 +24,8 @@ module MonomePages
       end
 
       UniMIDI::Input.all.each do |device|
-        @devices[:input][device.id] = { :name => device.pretty_name, :open => false }
+        @devices[:input][device.id] = 
+          { :name => device.pretty_name, :open => false, :device => device }
       end
       @devices[:input].each do |k,v|
         @devices[:input].delete(k) if UniMIDI::Input.all.find { |d| d.id == k } == nil
@@ -31,11 +33,9 @@ module MonomePages
     end
 
     def add_map(id, type, device, page=nil)
-      ap page
-      if type == :output
-        @outputs[id] = UniMIDI::Output.use id unless @outputs[id]
-      elsif type == :input
-        @inputs[id] = UniMIDI::Input.use id unless @inputs[id]
+      if @devices[type][id][:open] == false
+        @devices[type][id][:device].open
+        @devices[type][id][:open] = true
       end
 
       if @matrix[device.id] == nil
@@ -49,6 +49,14 @@ module MonomePages
         @matrix[device.id][:pages][page.id][:map].push( { :id => id, :type => type } )
       end
       true
+    end
+
+    def delete_map(device, map_idx, page=nil)
+      if page == nil
+        @matrix[device.id][:map].delete_at map_idx
+      else
+        @matrix[device.id][:pages][page.id][:map].delete_at map_idx
+      end
     end
 
   end
