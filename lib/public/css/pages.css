@@ -4,7 +4,7 @@ body {
   overflow: hidden;
 }
 
-.create-mapping {
+.midi-setup-container {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 10px;
@@ -16,29 +16,33 @@ body {
   background-color: #f3f3f3;
 }
 
-.create-mapping button {
+.midi-setup-container button {
   margin-left: 20px;
   margin-right: 20px;
 }
 
-.create-mapping select {
+.midi-setup-container select {
   margin: 10px 0px auto;
 }
 
-.create-mapping-ctrls {
+.midi-setup-container .ctrls {
   text-align: center;
 }
 
-.create-mapping-ctrls button {
+.midi-setup-container .ctrls button {
   margin-top: 10px;
 }
 
-.midi-unmap-button img {
+.midi-unmap-button {
   cursor: pointer;
 }
 
 .navbar {
   background-color: #333;
+}
+
+.nav-tabs .active a {
+  background-color: #bee0ff !important;
 }
 
 .navbar-fixed-top, .navbar-fixed-buttom {
@@ -86,37 +90,14 @@ body {
   background-repeat: no-repeat;
 }
 
+.toolbar-item img {
+  margin-left: 2px;
+  margin-top: 2px;
+}
+
 .toolbar-item:hover {
   background-color: #fff;
   cursor: pointer;
-}
-
-#toolbar-new-page {
-  background-image: url('/img/icons/new-page.png');
-}
-
-#toolbar-run {
-  background-image: url('/img/icons/run.png');
-}
-
-#toolbar-stop {
-  background-image: url('/img/icons/stop.png');
-}
-
-#toolbar-log {
-  background-image: url('/img/icons/log.png');
-}
-
-#toolbar-midi-map {
-  background-image: url('/img/icons/midi-map.png');
-}
-
-#toolbar-zoom-in {
-  background-image: url('/img/icons/zoom-in.png');
-}
-
-#toolbar-zoom-out {
-  background-image: url('/img/icons/zoom-out.png');
 }
 
 #editor-tabs {

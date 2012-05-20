@@ -14,6 +14,8 @@ module MonomePages
     end
 
     def scan_devices
+      #UniMIDI::Input.refresh
+      #UniMIDI::Output.refresh
       UniMIDI::Output.all.each do |device|
         @devices[:output][device.id] = 
           { :name => device.pretty_name, :open => false, :device => device }

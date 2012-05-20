@@ -36,14 +36,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">monome pages</a>
+          <a class="brand" href="#">no device selected</a>
           <div class="nav-collapse">
             <ul class="nav nav-pills">
-              <li class="selected-device"><a href="#">no device selected</a></li>
               <li class="dropdown">
                 <a href="#" class="menu-toggle" data-toggle="dropdown">serialosc <b class="caret"></b></a>
-                <ul class="dropdown-menu serialosc-dropdown">
-                  <li><a href="#">setup</a></li>
+                <ul class="dropdown-menu serialosc-dropdown"></ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="menu-toggle" data-toggle="dropdown">midi <b class="caret"></b></a>
+                <ul class="dropdown-menu midi-dropdown">
+                  <li><a href="#" class="setup">setup</a></li>
                 </ul>
               </li>
             </ul>
@@ -53,19 +56,39 @@
     </div>
 
     <div class="container" id="toolbar">
-      <div class="toolbar-item" id="toolbar-new-page"></div>
-      <div class="toolbar-item" id="toolbar-run"></div>
-      <div class="toolbar-item" id="toolbar-stop"></div>
-      <div class="toolbar-item" id="toolbar-log"></div>
-      <div class="toolbar-item" id="toolbar-midi-map"></div>
-      <div class="toolbar-item" id="toolbar-zoom-in"></div>
-      <div class="toolbar-item" id="toolbar-zoom-out"></div>
+      <div class="toolbar-item"><img src="/img/icons/new-page.png" width="32" height="32" id="toolbar-new-page"/></div>
+      <div class="toolbar-item"><img src="/img/icons/run.png" width="32" height="32" id="toolbar-run"/></div>
+      <div class="toolbar-item"><img src="/img/icons/stop.png" width="32" height="32" id="toolbar-stop"/></div>
+      <div class="toolbar-item"><img src="/img/icons/log.png" width="32" height="32" id="toolbar-log"/></div>
+      <div class="toolbar-item"><img src="/img/icons/midi-map.png" width="32" height="32" id="toolbar-midi-map"/></div>
     </div>
     
     <div class="nav nav-tabs" id="editor-tabs">
     </div>
     
     <div id="editors"></div>
+
+    <div class="modal" id="midi-setup-modal" style="display: none;">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">x</a>
+        <h3>midi setup</h3>
+      </div>
+      <div class="modal-body">
+        <h4>enable device</h4>
+        <div class="midi-setup-container">
+          <button class="btn btn-primary midi-input-btn">midi input</button>
+          <button class="btn btn-primary midi-output-btn">midi output</button>
+          <div class="create-mapping-ctrls">
+            <select class="midi-output-dropdown"></select>
+            <select class="midi-input-dropdown"></select>
+            <button class="btn btn-success midi-map-button">map</button>
+          </div>
+        </div>
+        <h4>existing mappings</h4>
+        <div class="existing-mappings">
+        </div>
+      </div>
+    </div>
 
     <div class="modal" id="new-page-modal" style="display: none;">
       <div class="modal-header">
@@ -88,13 +111,12 @@
       </div>
       <div class="modal-body">
         <h4>create mapping</h4>
-        <div class="create-mapping">
+        <div class="midi-setup-container create-mapping">
           <button class="btn btn-primary midi-input-btn">midi input</button>
           <button class="btn btn-primary midi-output-btn">midi output</button>
-          <div class="create-mapping-ctrls">
+          <div class="ctrls">
             <select class="midi-output-dropdown"></select>
             <select class="midi-input-dropdown"></select>
-            <select class="page-dropdown"></select>
             <button class="btn btn-success midi-map-button">map</button>
           </div>
         </div>

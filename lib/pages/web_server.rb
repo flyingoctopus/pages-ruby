@@ -62,5 +62,3 @@ module MonomePages
     end
   end
 end
-
-

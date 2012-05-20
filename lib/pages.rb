@@ -14,7 +14,7 @@ module MonomePages
     def initialize
       @serialosc = MonomePages::SerialOSC.new
       @midi = MonomePages::MIDIManager.new
-      @webserver = MonomePages::WebServer.new @serialosc, @midi      
+      @webserver = MonomePages::WebServer.new @serialosc, @midi     
     end
 
   end
