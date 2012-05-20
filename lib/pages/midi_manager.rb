@@ -18,7 +18,7 @@ module MonomePages
       #UniMIDI::Output.refresh
       UniMIDI::Output.all.each do |device|
         @devices[:output][device.id] = 
-          { :name => device.pretty_name, :open => false, :device => device }
+          { :name => device.pretty_name, :enabled => false, :device => device }
       end
 
       @devices[:output].each do |k,v|
@@ -27,7 +27,7 @@ module MonomePages
 
       UniMIDI::Input.all.each do |device|
         @devices[:input][device.id] = 
-          { :name => device.pretty_name, :open => false, :device => device }
+          { :name => device.pretty_name, :enabled => false, :device => device }
       end
       @devices[:input].each do |k,v|
         @devices[:input].delete(k) if UniMIDI::Input.all.find { |d| d.id == k } == nil
@@ -35,9 +35,9 @@ module MonomePages
     end
 
     def add_map(id, type, device, page=nil)
-      if @devices[type][id][:open] == false
+      if @devices[type][id][:enabled] == false
         @devices[type][id][:device].open
-        @devices[type][id][:open] = true
+        @devices[type][id][:enabled] = true
       end
 
       if @matrix[device.id] == nil

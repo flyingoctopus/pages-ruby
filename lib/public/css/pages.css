@@ -4,6 +4,12 @@ body {
   overflow: hidden;
 }
 
+.break {
+  display: block;
+  width: 100%;
+  height: 0px;
+}
+
 .midi-setup-container {
   margin-left: 10px;
   margin-right: 10px;
@@ -35,6 +41,11 @@ body {
 
 .midi-unmap-button {
   cursor: pointer;
+}
+
+.midi-device-alias {
+  margin: 10px 0px auto;
+  padding: 4px;
 }
 
 .navbar {
