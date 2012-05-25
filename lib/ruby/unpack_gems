@@ -1,0 +1,2 @@
+#!/bin/bash
+gem unpack alsa-rawmidi awesome_print json midi-jruby midi-winmm osc-ruby sinatra unimidi
