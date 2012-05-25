@@ -9,6 +9,7 @@ monome pages in ruby.  this is nowhere near usable.
     cd pages-ruby
     bundle install
     jruby --1.9 bin/runner.rb
+    http://localhost:4567
 
 **to build a jar**
 
