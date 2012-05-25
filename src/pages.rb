@@ -8,6 +8,7 @@ require_relative 'pages/web_server'
 
 config = MonomePages::Configuration.new
 config.serialosc.detect
+
 at_exit do
   ap "JmDNS: closing..." if $PAGES_DEBUG
   config.serialosc.jmdns.close

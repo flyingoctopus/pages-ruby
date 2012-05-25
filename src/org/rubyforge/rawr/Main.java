@@ -47,6 +47,7 @@ public class Main
     }
 
     runtime.evalScriptlet( "$: << 'src/'" ); 
+    runtime.evalScriptlet( "$: << '.'" ); 
     runtime.evalScriptlet("require '" + mainRubyFile + "'");
   }
 

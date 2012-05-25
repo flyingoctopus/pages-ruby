@@ -35,10 +35,11 @@ module MonomePages
         # rescue in case port is in use
         begin
           # the port we listen on and serialosc sends to
-          @listen_port = rand(1024..65535)
+          @listen_port = rand(65535 - 1024) + 1024
           @server = OSC::Server.new(@listen_port)
           foundPort = true
-        rescue
+        rescue Exception => e
+          ap e
         end
       end
 

@@ -11,25 +11,22 @@ module MonomePages
     def initialize
       @services = []
       @devices = []
-      @jmdns = javax.jmdns.JmDNS.create()
     end
 
     def detect
-      Thread.new do
-        ap "JmDNS: detecting..." if $PAGES_DEBUG
-        services = @jmdns.list('_monome-osc._udp.local.')
-        ap services
-        services.each do |service|
-          ap "JmDNS: service #{service.getName} discovered" if $PAGES_DEBUG
-          next if @services.index {|s| s.getName == service.getName } != nil
-          @services.push service
-          device = MonomePages::SerialOSCDevice.new service
-          device.start_osc_server
-          device.init_device
-          ap "JmDNS: discovered name:#{device.name}, serial:#{device.serial}" if $PAGES_DEBUG
-          device.id = @devices.length
-          @devices.push device
-        end
+      ap "JmDNS: detecting..." if $PAGES_DEBUG
+      @jmdns = javax.jmdns.JmDNS.create()
+      services = @jmdns.list('_monome-osc._udp.local.') if $PAGES_DEBUG
+      services.each do |service|
+        ap "JmDNS: service #{service.getName} discovered" if $PAGES_DEBUG
+        next if @services.index {|s| s.getName == service.getName } != nil
+        @services.push service
+        device = MonomePages::SerialOSCDevice.new service
+        device.start_osc_server
+        device.init_device
+        ap "JmDNS: discovered name:#{device.name}" if $PAGES_DEBUG
+        device.id = @devices.length
+        @devices.push device
       end
     end
 
